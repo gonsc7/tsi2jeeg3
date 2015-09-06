@@ -1,0 +1,9 @@
+@import "addons.scss";
+@import "practico1_web.scss";
+
+/* This file prefixes all rules with the theme name to avoid causing conflicts with other themes. */
+/* The actual styles should be defined in practico1_web.scss */
+.practico1_web {
+  @include addons;
+  @include practico1_web;
+}
