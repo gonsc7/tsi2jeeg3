@@ -3,47 +3,66 @@
 <head>
 <meta charset="ISO-8859-1">
 <title>Register</title>
-<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.5/angular.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.2/angular.min.js"></script>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
 <script src="/js/angularControllers.js" type="text/javascript"></script>
 <link rel="stylesheet" type="text/css" href="css/general.css" />
 </head>
 <body style="background-image: url('img/abstract_color_background_picture_8016-wide.jpg');">
 	
+	<div ng-app="myApp" ng-controller="customersCtrl"> 
 	
-	<div id="wrapper">
-        <form action="" method="post">
+		<ul>
+		  <li ng-repeat="x in names">
+		    {{ x.Name + ', ' + x.Country }}
+		  </li>
+		</ul>
+	
+	</div>
+<script>
+var app = angular.module('myApp', []);
+app.controller('customersCtrl', function($scope, $http) {
+    $http.get("http://www.w3schools.com/angular/customers.php")
+    .success(function(response) {$scope.names = response.records;});
+});
+</script>
+
+	<div id="wrapper" ng-app="UserApp">
+        <form name="userForm" ng-controller="UserController as user" ng-submit="userForm.$valid" novalidate>
+        
             <fieldset>
                 <legend style="width: 25%"> <p>Registrese aqu&iacute</p> <img src="img/Capture.PNG" style="width: 100%"/></legend>
                 <div>
-                    <input type="text" name="first_name" placeholder="Nombre"/>
+                    <input type="text" ng-model="userCtrl.user.name" placeholder="Nombre" required/>
                 </div>
                 <div>
-                    <input type="text" name="last_name" placeholder="Apellido"/>
+                    <input type="text" ng-model="userCtrl.user.lastName" placeholder="Apellido" required/>
                 </div>
                 <div>
-                    <input type="text" name="nick_name" placeholder="Usuario"/>
+                    <input type="text" ng-model="userCtrl.user.nickName" placeholder="Usuario" required/>
                 </div>
                 <div>
-                    <input type="password" name="password" placeholder="Contrase&ntilde;a"/>
+                    <input type="password" ng-model="userCtrl.user.password" placeholder="Contrase&ntilde;a" required/>
                 </div>
                 <div>
-                    <input type="password" name="confirm_Password" placeholder="Confirmar Contrase&ntilde;a"/>
+                    <input type="password" ng-model="userCtrl.user.confirmPassword" placeholder="Confirmar Contrase&ntilde;a" required/>
                 </div> 
                 <div>
-                    <input type="text" name="email" placeholder="Correo"/>
+                    <input type="text" ng-model="userCtrl.user.email" placeholder="Correo" required/>
                 </div>
                
                 <div>
-                    <input type="text" name="birthdate" placeholder="Fecha de nacimiento"/>
+                    <input type="text" ng-model="userCtrl.user.birthdate" placeholder="Fecha de nacimiento"/>
                 </div>   
                 
+                
+                
                 <div>
-                    <input type="text" name="phone" placeholder="N&uacute;mero de tel&eacute;fono"/>
+                    <input type="text" ng-model="userCtrl.user.phone" placeholder="N&uacute;mero de tel&eacute;fono"/>
                 </div> 
                 <input type="submit" name="submit" value="Crear"  style="background-color: #4786AD;"/>
             </fieldset>   
-        </form>
+        </form> 
     </div>
 </body>
 </html>
