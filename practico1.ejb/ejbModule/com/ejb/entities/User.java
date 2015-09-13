@@ -1,16 +1,16 @@
 package com.ejb.entities;
 
 import java.io.Serializable;
-import java.lang.String;
 import java.util.Calendar;
-import javax.persistence.*;
 
-/**
- * Entity implementation class for Entity: User
- *
- */
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.Table;
+import javax.xml.bind.annotation.XmlRootElement;
+
 @Entity
 @Table(name="Users")
+@XmlRootElement
 public class User implements Serializable {
 
 	
